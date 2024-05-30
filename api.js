@@ -22,25 +22,35 @@ router.post('/generate-content-ideas', async (req, res) => {
     const prompt = `You are an expert content strategist specializing in brainstorming engaging content ideas for various platforms and audiences.
     Please generate 3 compelling content ideas based on the following inputs:
 
-    * **Keyword:** ${keyword}
-    * **Topic:** ${niche}
-    * **Platform:** ${platform}
-    * **Tone:** ${tone}
-    * **Target Audience:** ${targetAudience}
+    Keyword: ${keyword}
+    Topic: ${niche}
+    Platform: ${platform}
+    Tone: ${tone}
+    Target Audience: ${targetAudience}
+    Instructions:
 
-    **Instructions:**
+    Generate Content Ideas:
+    Provide 3 unique and engaging content ideas related to the given topic.
+    Ensure each idea is specific, informative, and has the potential to attract traffic.
+    Tailor each idea to the specified platform and content type.
+    For each idea, specify:
+    title: A brief SEO-friendly title.
+    description: A brief description containing exactly 3 bullet points on what the content should cover.
+    type: The type of content (e.g., article, video, podcast).
+    length: An appropriate length for the content type and platform (e.g., "1500-word article", "10-minute video").
+    Respond strictly with a JSON object containing a list called "content_ideas" where each item adheres to this structure:
 
-    1. **Generate Content Ideas:**
-      - Provide 3 unique and engaging content ideas related to the given topic.
-      - Ensure each idea is specific, informative, and has the potential to attract traffic.
-
-    2. **Detail Each Idea:**
-      - For each content idea, include a brief SEO-friendly title.
-      - Provide a brief description containing exactly 3 bullet points on what the content should talk about.
-
-    Respond strictly with a JSON object containing a list called "content_ideas".
-
-    ---`;
+    JSON
+    {
+      "title": "SEO-Friendly Title",
+      "description": [
+        "Bullet point 1 about the content.",
+        "Bullet point 2 about the content.",
+        "Bullet point 3 about the content."
+      ],
+      "type": "article", 
+      "length": "1500-word article" 
+    }`;
 
     const chatCompletion = await openai.chat.completions.create({
       model: "gpt-3.5-turbo",

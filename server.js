@@ -12,7 +12,7 @@ const port = process.env.PORT || 3000;
 
 // Middleware
 app.use(helmet());
-app.use(cors({ origin: 'http://127.0.0.1:8080' })); 
+app.use(cors({ origin: 'https://kinovadigitalmarketing.com' })); // Adjust CORS origin
 app.use(express.json());
 
 // Rate limiting

@@ -20,39 +20,47 @@ router.post('/generate-content-ideas', async (req, res) => {
     const openai = createOpenAIClient();
 
     const prompt = `You are an expert content strategist specializing in brainstorming engaging content ideas for various platforms and audiences.
-    Please generate 3 compelling content ideas based on the following inputs:
 
-    Keyword: ${keyword}
-    Topic: ${niche}
-    Platform: ${platform}
-    Tone: ${tone}
-    Target Audience: ${targetAudience}
-    Instructions:
+Please generate 3 compelling content ideas based on the following inputs:
 
-    Generate Content Ideas:
-    Provide 3 unique and engaging content ideas related to the given topic.
-    Ensure each idea is specific, informative, and has the potential to attract traffic.
-    Tailor each idea to the specified platform and content type.
-    For each idea, specify:
-    title: A brief SEO-friendly title.
-    description: A brief description containing exactly 4 bullet points on what the content should cover.
-    type: The type of content (e.g., article, video, podcast).
-    length: An appropriate length for the content type and platform (e.g., "1500-2000 word article", "10-minute video").
-    Respond strictly with a JSON object containing a list called "content_ideas" where each item adheres to this structure:
+Keyword: ${keyword}
+Topic: ${niche}
+Platform: ${platform}
+Tone: ${tone}
+Target Audience: ${targetAudience}
 
-    JSON
-    {
-      "title": "SEO-Friendly Title",
-      "description": [
-        "Bullet point 1 about the content.",
-        "Bullet point 2 about the content.",
-        "Bullet point 3 about the content."
-        "Bullet point 4 about the content."
+Instructions:
 
-      ],
-      "type": "article", 
-      "length": "1500-2000 word article" 
-    }`;
+Generate Content Ideas:
+Provide 3 unique and engaging content ideas related to the given topic.
+Ensure each idea is specific, informative, and has the potential to attract traffic.
+Tailor each idea to the specified platform and content type, considering factors like:
+  * **Platform-specific formats:** E.g., articles for blogs, videos for YouTube, podcasts for audio platforms.
+  * **Character limits or word counts:** Adhere to platform-specific guidelines.
+  * **Visual elements:** Consider the use of images, graphics, or videos to enhance engagement.
+
+For each idea, specify:
+
+title: A brief, SEO-optimized title (e.g., including relevant keywords).
+description: A concise description containing 4 bullet points that clearly outline the content's value proposition.
+type: The specific content type (e.g., blog post, video script, podcast episode).
+length: An appropriate length for the content type and platform (e.g., "1500-2000 words", "5-10 minutes", "30-second video").
+
+Respond strictly with a JSON object containing a list called "content_ideas" where each item adheres to this structure:
+
+JSON
+{
+  "title": "SEO-Friendly Title (e.g., Keyword-Rich Title)",
+  "description": [
+    "Bullet point 1 about the content.",
+    "Bullet point 2 about the content.",
+    "Bullet point 3 about the content.",
+    "Bullet point 4 about the content."
+  ],
+  "type": "content type",
+  "length": "content length"
+}
+`;s
 
     const chatCompletion = await openai.chat.completions.create({
       model: "gpt-3.5-turbo",

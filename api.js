@@ -13,12 +13,14 @@ router.post('/generate-content-ideas', async (req, res) => {
   try {
     const { keyword, niche, platform, tone, targetAudience } = req.body;
 
+    // Check if all required fields are provided
     if (!keyword || !niche || !platform || !tone || !targetAudience) {
       return res.status(400).json({ error: 'All fields are required' });
     }
 
     const openai = createOpenAIClient();
 
+    // Create the prompt for the OpenAI API
     const prompt = `You are an expert content strategist specializing in brainstorming engaging content ideas for various platforms and audiences.
 
 Please generate 3 compelling content ideas based on the following inputs:
@@ -60,8 +62,9 @@ JSON
   "type": "content type",
   "length": "content length"
 }
-`;s
+`;
 
+    // Call OpenAI API to generate content ideas
     const chatCompletion = await openai.chat.completions.create({
       model: "gpt-3.5-turbo",
       messages: [{ role: "user", content: prompt }],
@@ -71,6 +74,7 @@ JSON
 
     const content = chatCompletion.choices[0].message.content;
 
+    // Extract JSON from the OpenAI response
     const jsonStart = content.indexOf('{');
     const jsonEnd = content.lastIndexOf('}') + 1;
 

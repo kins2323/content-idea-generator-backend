@@ -44,18 +44,19 @@ Tailor each idea to the specified platform and content type, considering factors
 For each idea, specify:
 
 1. Title: A brief, SEO-optimized title (e.g., including relevant keywords).
-2. Description: A brief explanation for each title, similar to the following format:
-   - "Building Your Brand: Strategies for New Businesses"
-   - Insights on establishing a strong brand identity and marketing strategy for newly launched businesses.
-   - "Legal Considerations When Starting Your Business"
-   - An overview of the legal aspects entrepreneurs need to consider, including registration, permits, and compliance.
+2. Description: Provide 4 action-oriented bullet points that outline the content's value proposition. Each bullet point should encourage action related to the content idea.
 
 Respond strictly with a JSON object containing a list called "content_ideas" where each item adheres to this structure:
 
 JSON
 {
   "title": "SEO-Friendly Title (e.g., Keyword-Rich Title)",
-  "description": "A brief explanation of the idea."
+  "description": [
+    "Bullet point 1 about the content.",
+    "Bullet point 2 about the content.",
+    "Bullet point 3 about the content.",
+    "Bullet point 4 about the content."
+  ]
 }
 `;
 

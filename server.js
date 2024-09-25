@@ -13,7 +13,7 @@ const port = process.env.PORT || 3000;
 // Middleware
 app.use(helmet());
 
-const allowedOrigins = ['https://www.kinovadigitalmarketing.com', 'http://localhost:3000'];
+const allowedOrigins = ['https://www.kinovadigitalmarketing.com']; // Removed 'http://localhost:3000'
 app.use(cors({
   origin: function (origin, callback) {
     if (!origin || allowedOrigins.indexOf(origin) !== -1) {
@@ -44,5 +44,5 @@ app.use('/api', apiRouter);
 
 // Start the server
 app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+  console.log(`Server is running on port ${port}`);
 });

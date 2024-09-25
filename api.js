@@ -26,7 +26,7 @@ router.post('/generate-content-ideas', async (req, res) => {
 Please generate 3 compelling content ideas based on the following inputs:
 
 Keyword: ${keyword}
-Topic: ${niche}
+Niche: ${niche}
 Platform: ${platform}
 Tone: ${tone}
 Target Audience: ${targetAudience}
@@ -43,24 +43,19 @@ Tailor each idea to the specified platform and content type, considering factors
 
 For each idea, specify:
 
-title: A brief, SEO-optimized title (e.g., including relevant keywords).
-description: A concise description containing 4 bullet points that clearly outline the content's value proposition.
-type: The specific content type (e.g., blog post, video script, podcast episode).
-length: An appropriate length for the content type and platform (e.g., "1500-2000 words", "5-10 minutes", "30-second video").
+1. Title: A brief, SEO-optimized title (e.g., including relevant keywords).
+2. Description: A brief explanation for each title, similar to the following format:
+   - "Building Your Brand: Strategies for New Businesses"
+   - Insights on establishing a strong brand identity and marketing strategy for newly launched businesses.
+   - "Legal Considerations When Starting Your Business"
+   - An overview of the legal aspects entrepreneurs need to consider, including registration, permits, and compliance.
 
 Respond strictly with a JSON object containing a list called "content_ideas" where each item adheres to this structure:
 
 JSON
 {
   "title": "SEO-Friendly Title (e.g., Keyword-Rich Title)",
-  "description": [
-    "Bullet point 1 about the content.",
-    "Bullet point 2 about the content.",
-    "Bullet point 3 about the content.",
-    "Bullet point 4 about the content."
-  ],
-  "type": "content type",
-  "length": "content length"
+  "description": "A brief explanation of the idea."
 }
 `;
 
